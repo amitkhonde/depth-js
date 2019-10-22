@@ -1,0 +1,19 @@
+{
+  "name": "depth-js",
+  "version": "1.0.0",
+  "description": "Perform deep operations in Javascript like cloning, omitting, finding deep values on objects and arrays.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amitkhonde/depth-js.git"
+  },
+  "author": "Amit Khonde",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amitkhonde/depth-js/issues"
+  },
+  "homepage": "https://github.com/amitkhonde/depth-js#readme"
+}
