@@ -15,5 +15,18 @@
   "bugs": {
     "url": "https://github.com/amitkhonde/depth-js/issues"
   },
-  "homepage": "https://github.com/amitkhonde/depth-js#readme"
+  "homepage": "https://github.com/amitkhonde/depth-js#readme",
+  "keywords": [
+    "clone-deep",
+    "cloneDeep",
+    "omit-deep",
+    "omitDeep",
+    "find-deep",
+    "findDeep",
+    "get-deep-key",
+    "delete-deep",
+    "object clone",
+    "object find",
+    "object omit keys"
+  ]
 }
