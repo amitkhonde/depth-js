@@ -1,6 +1,6 @@
 {
     "name": "depth-js",
-    "version": "1.0.0",
+    "version": "1.0.3",
     "description": "Perform deep operations in Javascript like cloning, omitting, finding deep values on objects and arrays.",
     "main": "index.js",
     "scripts": {

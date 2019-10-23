@@ -1,65 +1,69 @@
 module.exports = {
-    cloneDeep: (source) => {
-        if (!isObject(source)) {
-            throw "argument is not an object";
-        }
+    cloneDeep,
+    omitDeep,
+    findDeep
+}
 
-        if (isArray(source)) {
-            return cloneArray(source);
-        }
+function cloneDeep(source) {
+    if (!isObject(source)) {
+        throw "argument is not an object";
+    }
 
-        let target = {};
-        for (let key in source) {
+    if (isArray(source)) {
+        return getDeepArray(source, cloneDeep);
+    }
+
+    let target = {};
+    for (let key in source) {
+        if (isArray(source[key])) {
+            target[key] = getDeepArray(source[key], cloneDeep);
+        } else if (isObject(source[key])) {
+            target[key] = cloneDeep(source[key]);
+        } else {
+            target[key] = source[key];
+        }
+    }
+
+    return target;
+}
+
+function omitDeep(source, keys) {
+    if (!isObject(source)) {
+        throw "argument is not an object";
+    }
+
+    let target = {};
+    for (let key in source) {
+        if (!keys.includes(key)) {
             if (isArray(source[key])) {
-                target[key] = getDeepArray(source[key], cloneDeep);
+                target[key] = getDeepArray(source[key], omitDeep, keys);
             } else if (isObject(source[key])) {
-                target[key] = cloneDeep(source[key]);
+                target[key] = omitDeep(source[key], keys);
             } else {
                 target[key] = source[key];
             }
         }
-
-        return target;
-    },
-
-    omitDeep: (source, keys) => {
-        if (!isObject(source)) {
-            throw "argument is not an object";
-        }
-
-        let target = {};
-        for (let key in source) {
-            if (!keys.includes(key)) {
-                if (isArray(source[key])) {
-                    target[key] = getDeepArray(source[key], omitDeep, keys);
-                } else if (isObject(source[key])) {
-                    target[key] = omitDeep(source[key], keys);
-                } else {
-                    target[key] = source[key];
-                }
-            }
-        }
-
-        return target;
-    },
-
-    findDeep: (obj, key) => {
-        if (!isObject(source)) {
-            throw "argument is not an object";
-        }
-        
-        for (objKey in obj) {
-            if (objKey === key) {
-                return obj[key];
-            } else if (isArray(obj[objKey])) {
-                return getDeepArray(obj[objKey], findDeep, key)[0];
-            } else if (isObject(obj[objKey])) {
-                return findDeep(obj[objKey], key);
-            }
-        }
-
-        return undefined;
     }
+
+    return target;
+}
+
+function findDeep(obj, key) {
+    if (!isObject(source)) {
+        throw "argument is not an object";
+    }
+
+    for (objKey in obj) {
+        if (objKey === key) {
+            return obj[key];
+        } else if (isArray(obj[objKey])) {
+            return getDeepArray(obj[objKey], findDeep, key)[0];
+        } else if (isObject(obj[objKey])) {
+            return findDeep(obj[objKey], key);
+        }
+    }
+
+    return undefined;
 }
 
 function getDeepArray(arr, callBack, keys = []) {
