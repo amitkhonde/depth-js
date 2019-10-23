@@ -49,7 +49,7 @@ function omitDeep(source, keys) {
 }
 
 function findDeep(obj, key) {
-    if (!isObject(source)) {
+    if (!isObject(obj)) {
         throw "argument is not an object";
     }
 
